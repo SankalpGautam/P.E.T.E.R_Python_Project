@@ -7,7 +7,7 @@ import os
 import smtplib
 import pyautogui as pag  # pip install pyautogui
 import time
-from pas import password
+# from pas import password
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -22,15 +22,15 @@ def speak(audio):
 def wishMe():
     hour = int(datetime.datetime.now().hour)
     if hour >= 0 and hour < 12:
-        speak("Good Morning!")
+        speak("Good Morning Sankalp!")
 
     elif hour >= 12 and hour < 18:
-        speak("Good Afternoon!")
+        speak("Good Afternoon Sankalp!")
 
     else:
-        speak("Good Evening!")
+        speak("Good Evening Sankalp!")
 
-    speak("peter here. Sir how may I help you")
+    speak("Peter here. Sir how may I help you")
 
 
 def takeCommand():
@@ -134,19 +134,17 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('rishuyadav_ee20a14_56@dtu.ac.in', password())
-    server.sendmail('sauravkumarmehar97@gmail.com', to, content)
+    server.login('sankalpgautam2002@gmail.com', 'ultimatix')
+    server.sendmail('sankalpgautam2002@gmail.com', to, content)
     server.close()
 
 
 if __name__ == "__main__":
     wishMe()
     thisdict = {
-        "saurabh": "9821808096",
-        "saurav": "9821808096",
-        "rishu": "8447068664",
-        "saroj": "9821808096"
-    }
+        "sankalp": "8851007045",
+        "rishu": "8447068664"
+            }
     while True:
         query = takeCommand().lower()
         # Logics for executing tasks based on query
@@ -170,22 +168,6 @@ if __name__ == "__main__":
             time.sleep(1)
             speak("what else i can search for you")
 
-        elif 'whatsapp' in query:  # send message to rishu verma on whatsapp
-            message = takeMessage()
-            while message == "None":
-                message = takeMessage()
-
-            name = takeName().lower()
-            if thisdict.get(name) == None:
-                while thisdict.get(name) == None:
-                    name = takeName().lower()
-            if thisdict.get(name) != None:
-                webbrowser.open(f"https://wa.me/91{thisdict.get(name)}")
-
-            time.sleep(7)
-            pag.typewrite(message)
-            pag.press("enter")
-
         elif 'speech to text' in query:
             f = open("myfile.txt", "x")
             txt = takeText()
@@ -200,7 +182,7 @@ if __name__ == "__main__":
             webbrowser.open("google.com")
 
         elif 'play music' in query:
-            music_dir = 'C:\\Users\\rishu\\Music\\Playlist'
+            music_dir = 'C:\\Users\\dell\\Music'
             songs = os.listdir(music_dir)
             print(songs)
             os.startfile(os.path.join(music_dir, songs[0]))
@@ -211,11 +193,11 @@ if __name__ == "__main__":
 
         elif 'email' in query:
             try:
-                speak("What should I say to Mr. saurav?")
+                speak("What should I say to Mr. Rishu?")
                 content = takeCommand()
-                to = "rishuyadav5349@gmail.com"
+                to = "rishuyadav_ee20a14_56@dtu.ac.in"
                 sendEmail(to, content)
-                speak("Email has been sent Syccessfully!")
+                speak("Email has been sent Successfully!")
             except Exception as e:
                 print(e)
                 speak("Sorry Sir, I am not able to send this email. You may try again.")
